@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/node_modules/*": true,
+        "**/dist/*": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "html.format.wrapLineLength": 0,
+    "editor.rulers": [80, 120],
+    "search.useIgnoreFiles": false,
+    "blade.format.enable": true,
+    "emmet.includeLanguages": {
+        "blade": "html"
+    }
+}

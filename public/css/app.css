@@ -1,0 +1,96 @@
+[v-cloak] {
+  opacity: 0;
+}
+
+.material-icons {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.app-header {
+  background: #343f4b;
+  color: #fff;
+  border-left: 1px solid #fff;
+}
+
+.app-header .app-header--menus-icon {
+  display: inline-block;
+  font-size: 1.8rem;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.app-menus {
+  display: inline-block;
+  background: #343f4b;
+  color: #fff;
+  width: 50px;
+  transition: 150ms;
+}
+
+.app-menus .menu-list--item {
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  white-space: nowrap;
+  cursor: pointer;
+  height: 48px;
+  display: inline-block;
+}
+
+.app-menus .menu-list--item .menu-list--item--icon {
+  margin: 0 0.5rem;
+}
+
+.app-menus .menu-list--item .menu-list--item--label {
+  display: none;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.app-menus .menu-list--item[title]:after {
+  position: absolute;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  border: 1px solid #fff;
+  content: attr(title);
+  background: #343f4b;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  padding: 10px;
+  border-radius: 5px;
+  top: 50%;
+  right: -0.25rem;
+  opacity: 0;
+  transform: translate(50%, -50%);
+  transition: 150ms;
+  color: #fff;
+}
+
+.app-menus .menu-list--item:hover {
+  color: #fff;
+  background: #46515e;
+}
+
+.app-menus .menu-list--item:hover:after {
+  opacity: 1;
+  transform: translate(100%, -50%);
+}
+
+.app-menus .menu-list--item.router-link-active {
+  border-left: 6px solid color(primary);
+  background: #2a3541;
+  color: #fff;
+}
+
+.app-menus.expand {
+  width: 200px;
+}
+
+.app-menus.expand .menu-list--item--label {
+  display: inline-block;
+}
+
