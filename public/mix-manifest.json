@@ -1,6 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/base.css": "/css/base.css",
-    "/js/default.js": "/js/default.js"
+    "/js/core/app.js": "/js/core/app.js?id=5cf7ba51be56e920fc60",
+    "/css/base.css": "/css/base.css?id=b000fae01b664b667c50",
+    "/css/default/index.css": "/css/default/index.css?id=fd4b50d8a2e246133722",
+    "/css/default/theme.css": "/css/default/theme.css?id=e1d3956ccba92b31bf03",
+    "/js/core/storage.js": "/js/core/storage.js?id=f856f3e030d92e8f9377",
+    "/js/index.js": "/js/index.js?id=1d2b0629bbb4e00e8b25",
+    "/js/users/index.js": "/js/users/index.js?id=b2765aad1204713ab6b6"
 }

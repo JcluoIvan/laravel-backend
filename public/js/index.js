@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -31464,40 +31464,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-var app = new Vue({
-  computed: {
-    name: function name() {
-      return document.querySelector('meta[name=app-name]').getAttribute('content');
-    }
-  },
-  methods: {
-    setCache: function setCache(name, value) {
-      localStorage.setItem("".concat(this.name, "-").concat(name), JSON.stringify({
-        value: value
-      }));
-    },
-    getCache: function getCache(name) {
-      var def = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var v = localStorage.getItem("".concat(this.name, "-").concat(name));
-      return v ? JSON.parse(v).value : def;
-    }
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (app);
-
-/***/ }),
-
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -31531,27 +31497,116 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/default.js":
-/*!*********************************!*\
-  !*** ./resources/js/default.js ***!
-  \*********************************/
+/***/ "./resources/js/core/app.js":
+/*!**********************************!*\
+  !*** ./resources/js/core/app.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var app = new Vue({
+  computed: {
+    name: function name() {
+      var metaAppName = document.querySelector('meta[name=app-name]');
+      return metaAppName && metaAppName.getAttribute('content') || 'app-name';
+    },
+    title: function title() {
+      var elTitle = document.querySelector('title');
+      return elTitle && elTitle.getAttribute('content') || 'title';
+    }
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (app);
+
+/***/ }),
+
+/***/ "./resources/js/core/index.js":
+/*!************************************!*\
+  !*** ./resources/js/core/index.js ***!
+  \************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app */ "./resources/js/app.js");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ "./resources/js/core/storage.js");
 
+
+window.app = __webpack_require__(/*! ./app */ "./resources/js/core/app.js");
+window.storage = new _storage__WEBPACK_IMPORTED_MODULE_1__["default"](app.name);
+
+/***/ }),
+
+/***/ "./resources/js/core/storage.js":
+/*!**************************************!*\
+  !*** ./resources/js/core/storage.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function Storage(prefix) {
+  this.prefix = prefix;
+}
+
+Storage.prototype.itemKey = function (k) {
+  return "".concat(this.prefix, ":").concat(k);
+};
+
+Storage.prototype.set = function (key, value) {
+  var data = {
+    value: value
+  };
+
+  if (_typeof(value) === 'object') {
+    if ('toJson' in value) {
+      data.value = value.toJson();
+    } else if ('toString' in value) {
+      data.value = value.toString();
+    }
+  }
+
+  localStorage.setItem(this.itemKey(key), JSON.stringify(data));
+  return this;
+};
+
+Storage.prototype.get = function (key) {
+  var def = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var value = localStorage.getItem(this.itemKey(key));
+  var data = value ? JSON.parse(value) : null;
+  return data ? data.value : def;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Storage);
+
+/***/ }),
+
+/***/ "./resources/js/index.js":
+/*!*******************************!*\
+  !*** ./resources/js/index.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core */ "./resources/js/core/index.js");
 
 var menu = new Vue({
   el: '#app-menus',
   data: {
-    expand: _app__WEBPACK_IMPORTED_MODULE_0__["default"].getCache('menu-expand', true)
+    expand: storage.get('menu-expand', true)
   },
   watch: {
-    expand: function expand(bool) {
-      _app__WEBPACK_IMPORTED_MODULE_0__["default"].setCache('menu-expand', bool === true);
+    expand: function expand(_expand) {
+      storage.set('menu-expand', _expand === true);
     }
   }
 });
@@ -31575,14 +31630,14 @@ var header = new Vue({
 
 /***/ }),
 
-/***/ 1:
-/*!***************************************!*\
-  !*** multi ./resources/js/default.js ***!
-  \***************************************/
+/***/ 2:
+/*!*************************************!*\
+  !*** multi ./resources/js/index.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\works\laravel-backend\resources\js\default.js */"./resources/js/default.js");
+module.exports = __webpack_require__(/*! C:\works\laravel-backend\resources\js\index.js */"./resources/js/index.js");
 
 
 /***/ })

@@ -1,14 +1,13 @@
-require('./bootstrap');
-import app from './app';
+import './core';
 
 var menu = new Vue({
     el: '#app-menus',
     data: {
-        expand: app.getCache('menu-expand', true)
+        expand: storage.get('menu-expand', true)
     },
     watch: {
-        expand(bool) {
-            app.setCache('menu-expand', bool === true);
+        expand(expand) {
+            storage.set('menu-expand', expand === true);
         }
     }
 });

@@ -7,6 +7,20 @@
   vertical-align: middle;
 }
 
+html,
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.app-panel,
+.app-panel--menus,
+.app-panel--main {
+  position: relative;
+  height: 100%;
+}
+
 .app-header {
   background: #343f4b;
   color: #fff;
@@ -25,7 +39,8 @@
   display: inline-block;
   background: #343f4b;
   color: #fff;
-  width: 50px;
+  width: 55px;
+  height: 100%;
   transition: 150ms;
 }
 
@@ -38,10 +53,11 @@
   cursor: pointer;
   height: 48px;
   display: inline-block;
+  color: #fff;
 }
 
 .app-menus .menu-list--item .menu-list--item--icon {
-  margin: 0 0.5rem;
+  font-size: 32px;
 }
 
 .app-menus .menu-list--item .menu-list--item--label {
@@ -73,6 +89,7 @@
 .app-menus .menu-list--item:hover {
   color: #fff;
   background: #46515e;
+  text-decoration: none;
 }
 
 .app-menus .menu-list--item:hover:after {

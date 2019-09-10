@@ -1,0 +1,17 @@
+@import '../base.scss';
+
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.app-panel,
+.app-panel--menus,
+.app-panel--main {
+    position: relative;
+    height: 100%;
+}
+
+$app-background-color: #343f4b;
+$app-font-color: #fff;

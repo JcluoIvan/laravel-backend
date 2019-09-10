@@ -29,6 +29,24 @@ class ViewServiceProvider extends ServiceProvider
             'themeTemplate' => 'default',
             'appTitle' => 'laravel - backend',
             'appName' => 'demo-backend',
+            'themeCSS' => '/css/default/index.css',
+            'menus' => [
+                [
+                    'icon' => 'home',
+                    'label' => 'Home',
+                    'link' => '/backend',
+                ],
+                [
+                    'icon' => 'settings',
+                    'label' => 'System Config',
+                    'link' => '/backend/system-config',
+                ],
+                [
+                    'icon' => 'account_circle',
+                    'label' => 'Users',
+                    'link' => '/backend/users',
+                ]
+            ]
         ]);
     }
 }

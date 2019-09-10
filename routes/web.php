@@ -22,7 +22,12 @@ Route::get('/cache', function () {
     return "<pre style='color: green'>{$message}</pre>";
 });
 
-Route::prefix('backend')->group(function () {
+Route::prefix('backend')
+    ->namespace('Backend')
+    ->group(function () {
+        Route::get('/', 'HomeController@viewIndex');
 
-    Route::get('/system-config', 'SystemConfigController@viewIndex');
-});
+        Route::get('/system-config', 'SystemConfigController@viewIndex');
+
+        Route::get('/users', 'UsersController@viewIndex');
+    });

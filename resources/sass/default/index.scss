@@ -1,5 +1,5 @@
 //
-@import 'base.scss';
+@import 'theme.scss';
 
 .app-header {
     background: $app-background-color;
@@ -19,21 +19,23 @@
     display: inline-block;
     background: $app-background-color;
     color: $app-font-color;
-    width: 50px;
+    width: 55px;
+    height: 100%;
     transition: 150ms;
 
     .menu-list--item {
         position: relative;
         width: 100%;
         margin-top: 0.5rem;
-        padding: .5rem;
+        padding: 0.5rem;
         white-space: nowrap;
         cursor: pointer;
         height: 48px;
         display: inline-block;
+        color: $app-font-color;
 
         & .menu-list--item--icon {
-            margin: 0 0.5rem;
+            font-size: 32px;
         }
         & .menu-list--item--label {
             display: none;
@@ -63,6 +65,8 @@
         &:hover {
             color: #fff;
             background: #46515e;
+            text-decoration: none;
+
             &:after {
                 opacity: 1;
                 transform: translate(100%, -50%);
